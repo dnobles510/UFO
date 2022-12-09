@@ -56,10 +56,11 @@ else {delete extraFilters[id]};
   
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
-    extraFilters.forEach((key) => filterData=filterData.filter(row => row[key] === extraFilters[key])
-    );
+    Object.entries(extraFilters).forEach(([key, value]) => {
+      filterData = filterData.filter(row => row[key] === value)
+    })
     // 10. Finally, rebuild the table using the filtered data
-    buildTable(extraFilters)
+    buildTable(filterData)
   };
   
   // 2. Attach an event to listen for changes to each filter
